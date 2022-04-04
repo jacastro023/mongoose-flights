@@ -1,36 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-  <title>Mongoose Flights</title>
-</head>
-<body>
-  <h1>Flight List</h1>
-  <table>
+<%- include('../partials/header') %>
+  <table class="container">
     <thead>
       <tr>
-        <th>Airline</th>
-        <th>Airport</th>
-        <th>Flight Number</th>
-        <th>Departs</th>
+        <th class="col">Airline</th>
+        <th class="col">Airport</th>
+        <th class="col">Flight Number</th>
+        <th class="col">Departs</th>
       </tr>
     </thead>
     <tbody>
         <% flights.forEach(f => { %>
-            <!-- Write the line of EJS to iterate over movies using forEach -->
+            <!-- Write the line of EJS to iterate over flights using forEach -->
                 <tr>
-                    <td><%= f.airline %></td>
-                    <td><%= f.airport %></td>
-                    <td><%= f.flightNo %></td>
-                    <td><%= f.departs %></td>
+                    <td class="col"><%= f.airline %></td>
+                    <td class="col"><%= f.airport %></td>
+                    <td class="col"><%= f.flightNo %></td>
+                    <td class="col"><%= f.departs %></td>
+                    <td class="col"><a href="/flights/<%= f._id %>">DETAILS</a></td>
+                    <td>
+                      <form action="/flights/<%= f._id %>?_method=DELETE" method="POST">
+                        <button type="submit"> Delete</button>
+                      </form>
+                    </td>
                 </tr>
                 <% }); %>
             <!-- Close the forEach using EJS here -->
     </tbody>
   </table>
-  <a href="/flights/new">New flight</a>
-</body>
-</html>
+  <%- include('../partials/footer') %>

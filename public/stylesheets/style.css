@@ -1,8 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: -webkit-center;
+  background-color: lightblue;
 }
 
 a {
   color: #00B7FF;
+}
+
+.navbar-collapse{
+  place-content: center;
+  font-size: xx-large;
+}
+
+.col {
+  text-align: center;
+}
+
+.homepage {
+  background-image: url('../images/airplane.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.welcome{
+  position: absolute;
+  top: 50%;
+  left: 25%;
+}
+
+label {
+  margin-bottom: 20px;
 }

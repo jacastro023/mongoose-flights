@@ -1,0 +1,63 @@
+<%- include('../partials/header') %>
+   <table>
+      <thead>
+        <tr>
+          <th class="col">Airline</th>
+          <th class="col">Flight Number</th>
+          <th class="col">Departs</th>
+          <th class="col">Departure Airport</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col"><%= flight.airline %></td>
+          <td class="col"><%= flight.flightNo %></td>
+          <td class="col"><%= flight.departs %></td>
+          <td class="col"><%= flight.airport %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <% if (flight.destinations.length) { %>
+      <h2>Destination</h2>
+      <table>
+        <thead>
+          <tr>
+            <th class="col">Destination Airport</th>
+            <th class="col">Arrival</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% flight.destinations.sort((a, b) => a.arrival - b.arrival).forEach(function (d) { %>
+            <tr>
+                <td class="col"><%= d.airport %></td>
+                <td class="col"><%= (d.arrival).toString().slice(4, 16) %></td>
+                <td class="col"><%= (d.arrival).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) %></td>
+                <td class="col"><form action="/flights/<%= flight._id %>/destinations/<%= d._id %>?_method=DELETE" method="POST">
+                  <button type="submit">Delete</button>
+                </form></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } else { %>
+      <h5>No Destinations Yet</h5>
+      <% } %>
+      <br>
+
+    <form action="/flights/<%= flight._id %>/destinations" method="POST">
+      <label>Destination Airport:
+          <select name="airport">
+            <option value="AUS">AUS</option>
+            <option value="DAL">DAL</option>
+            <option value="LAX">LAX</option>
+            <option value="SEA">SEA</option>
+          </select>
+      </label><br>
+      <label>Arrival:
+        <input type="datetime-local" name="arrival" required>
+      </label><br>
+      <button type="submit">Add Destination Details</button>
+    </form>
+    </table>
+    <%- include('../partials/footer') %>
