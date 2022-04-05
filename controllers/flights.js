@@ -1,5 +1,5 @@
 const Flight = require('../models/flight');
-const Destination = require('../models/flight');
+const Ticket = require('../models/tickets');
 
 module.exports = {
     index,
@@ -36,9 +36,15 @@ function deleteFlight(req, res) {
   })
 }
 
-function show(req, res){
-  Flight.findById(req.params.id, function(err, flight){
-      res.render("flights/show", {title: "Airline Detail", flight});
+function show(req, res) {
+  Flight.findById(req.params.id, function(err, flights) {
+      Ticket.find({flight: flights._id}, function(err, tickets){
+          res.render('flights/show', {
+            title: "Airline Detail",
+              tickets,
+              flights
+          });
+      });
   })
 }
 
