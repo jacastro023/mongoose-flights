@@ -28,10 +28,9 @@ Create a ticketSchema that will be compiled into a Ticket.
 Modify the show view for a flight to render, as you see fit (table, grid, etc.), a list of tickets that have been created for that flight.
 Also on the flight's show view, display a New Ticket link (perhaps styled to look like a button) that when clicked, shows the ticket's new view used to create a ticket for the flight. When the form is submitted, create the ticket on the server and redirect back to the flight's show view.
 
-### Problems:
-When trying to submit the ticket on the ticket page, the flights._id is not being passed to the create request and so that part of the application is not working as of right now.
-I believe that it is in the controllers that the flight is not being passed by or I did not link the tickets and the flight models correctly.
 
 ### Demo:
-https://user-images.githubusercontent.com/58004058/161803195-38b683ec-9b91-4264-b00e-45bc2604b72c.mp4
+https://user-images.githubusercontent.com/58004058/161838699-9018ec61-7984-48be-a778-6594a68b6ff3.mp4
+
+
 
