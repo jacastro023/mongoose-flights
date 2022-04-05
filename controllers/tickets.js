@@ -3,22 +3,33 @@ const Ticket = require('../models/tickets');
 
 module.exports = {
     newTicket,
-    create
+    create,
+    deleteTicket
 }
 
-function newTicket(req, res){
-    res.render('tickets/new', {flight: req.params.id, title:"Tickets"})
-};
+function newTicket(req, res) {
+    Flight.findById(req.params.id, function(err, flight) {
+        console.log(flight)
+            res.render('tickets/new', {
+                title: 'PW Flights Lab',
+                flight
+                
+            });
+        });
+        
+}
 
 function create(req, res){
-    let newTicket = {
-        flight: req.params.id,
-        seat: req.body.seat,
-        price: req.body.price
-    }
-    Ticket.create(newTicket, function(err, ticket){
-        if(err) res.send(err)
-        res.redirect(`/flights/${req.params.id}`);
-    })
+    req.body['flight'] = req.params.id
+    console.log(req.body);
+    Ticket.create(req.body, function(err, ticket) {
+        res.redirect(`/flights/${req.params.id}`)
+    });
 }
 
+function deleteTicket(req, res) {
+    console.log(req.body)
+    Ticket.deleteOne(req.body, function(err, ticket) {
+            res.redirect(`/flights/${req.params.id}`);
+        });
+}

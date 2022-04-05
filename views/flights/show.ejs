@@ -45,7 +45,7 @@
       <% } %>
       <br>
 
-      <% if (flights.tickets.length) { %>
+      <% if (tickets.length) { %>
         <table>
         <thead>
             <tr>
@@ -55,18 +55,15 @@
             </tr>
         </thead>
         <tbody>
-            <% flight.tickets.forEach(function(ticket) { %>
+          <% tickets.forEach(t => { %>
             <tr>
-                <!-- <td><%= ticket.createdAt.toLocaleDateString() %></td> -->
-                <td><%= ticket.seat %></td>
-                <td><%= `$${ticket.price}` %></td>
-                <td>
-                    <form action="/flights/<%= flight._id %>/tickets/<%= ticket._id %>?_method=DELETE"  method="POST">
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            <% }) %>
+                <td><%= t.seat %> </td>
+                <td>$<%= t.price %> </td>
+                <td><form action="/tickets/<%= flights._id %>?_method=DELETE" method="POST">
+                    <button name="seat" value="<%= t.seat %>" type="submit">remove</button>
+                </form></td>
+            </tr>                 
+        <% }) %>
         </tbody>
         </table>
     <% } else { %>

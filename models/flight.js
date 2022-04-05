@@ -31,12 +31,8 @@ const flightSchema = new Schema({
     },
     departs: {
         type: Date, 
-        default: function() {
-        return new Date(new Date().setFullYear(new Date().getFullYear() + 1));
-        },
-    },
-    destinations: [destinationSchema],
-    tickets: [{type: Schema.Types.ObjectId, ref: 'Ticket'}]
+        default: new Date(new Date().setFullYear(new Date().getFullYear() + 1))},
+    destinations: [destinationSchema]
   }, {
     timestamps: true
   });
